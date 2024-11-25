@@ -78,7 +78,7 @@ router.get("/" , function(req, res,next){
 
 router.get("/profile" ,async (req,res,next) => {
 try {
-    const productlist = await Products.find({});
+    const productlist = await Products.find();
     console.log(productlist)
       res.render("profile" ,{productlist})
 } catch (error) {
