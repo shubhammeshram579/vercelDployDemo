@@ -77,9 +77,14 @@ router.get("/" , function(req, res,next){
 
 
 router.get("/profile" ,async (req,res,next) => {
-  const productlist = await Products.find({});
-  console.log(productlist)
-    res.render("profile" ,{productlist})
+try {
+    const productlist = await Products.find({});
+    console.log(productlist)
+      res.render("profile" ,{productlist})
+} catch (error) {
+  console.log("somthing went error",error.message)
+  
+}
 })
 
 
