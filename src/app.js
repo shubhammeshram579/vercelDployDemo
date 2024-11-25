@@ -28,11 +28,13 @@ app.use(cookieParser())
 
 
 var indexRouter = require('./routes/index');
+var productRouter = require('./models/product');
 
 
 
 // router setup
 app.use('/', indexRouter);
+app.use('/product', productRouter);
 
 // Start the server
 const PORT = process.env.PORT || 5000;

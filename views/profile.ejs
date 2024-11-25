@@ -7,5 +7,18 @@
 </head>
 <body>
     <h1>shubham meshram</h1>
+    <div class="page2 chaids">
+        <% if (productlist.length > 0) { %>
+            <% productlist.forEach(function(product) { %>
+              <div class="card1 chaid">
+                
+                  <img height="300" src="<%= product.pImage %>" alt="">
+                <h5><%= product.producttitle %></h5>
+                <h6>$<%= product.pPrice %></h6>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <h3>Not found</h3>
+          <% } %>
 </body>
 </html>

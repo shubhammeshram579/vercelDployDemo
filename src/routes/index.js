@@ -1,8 +1,12 @@
 var express = require('express');
 
+var connectDB = require(".//../db/mongodb.js")
+const Products = require(".//../models/product.js")
+
 var router = express.Router();
 
 
+connectDB();
 
 router.get("/" , function(req, res,next){
   
@@ -72,8 +76,12 @@ router.get("/" , function(req, res,next){
 });
 
 
-router.get("/profile" ,(req,res,next) => {
-    res.render("profile")
+router.get("/profile" ,async (req,res,next) => {
+  const productlist = await Products.find({});
+  console.log(productlist)
+    res.render("profile" ,{productlist})
 })
+
+
 
 module.exports = router
