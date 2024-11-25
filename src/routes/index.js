@@ -1,12 +1,12 @@
 var express = require('express');
 
-var connectDB = require(".//../db/mongodb.js")
+// var connectDB = require(".//../db/mongodb.js")
 const Products = require(".//../models/product.js")
 
 var router = express.Router();
 
 
-connectDB();
+// connectDB();
 
 router.get("/" , function(req, res,next){
   
