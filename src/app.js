@@ -36,10 +36,7 @@ const connectDB = async () => {
     let retries = 5; // Number of retry attempts
     while (retries) {
         try {
-            let connect = await mongoose.connect(process.env.MONGO_LOCAL_URI, {
-                // useNewUrlParser: true,
-                // useUnifiedTopology: true,
-            });
+            let connect = await mongoose.connect(process.env.MONGO_URI);
             console.log('MongoDB connected successfully!');
             return connect;
             break;
