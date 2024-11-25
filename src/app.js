@@ -5,29 +5,58 @@ const path = require('path');
 const mongoose = require("mongoose");
 
 require('dotenv').config()
+mongoose.set('debug', true);
+
+
+
+// const connectDB = async () => {
+//     try {
+
+//         // mongodb local server
+//         // await mongoose.connect(process.env.MONGODB_LOCAL_SERVER)
+        
+
+//         // mondb atlas cloud sever
+//         await mongoose.connect(process.env.MONGO_LOCAL_URI)
+
+//         console.log("✅ MongoDB Connected Successfully!");
+        
+//     } catch (error) {
+//         console.log("❌ MONGODB connectin Failed", error);
+//         process.exit(1);
+        
+//     }
+
+// }
+
+// connectDB();
 
 
 const connectDB = async () => {
-    try {
-
-        // mongodb local server
-        // await mongoose.connect(process.env.MONGODB_LOCAL_SERVER)
-        
-
-        // mondb atlas cloud sever
-        await mongoose.connect(process.env.MONGO_LOCAL_URI)
-
-        console.log("✅ MongoDB Connected Successfully!");
-        
-    } catch (error) {
-        console.log("❌ MONGODB connectin Failed", error);
-        process.exit(1);
-        
+    let retries = 5; // Number of retry attempts
+    while (retries) {
+        try {
+            await mongoose.connect(process.env.MONGO_LOCAL_URI, {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+            });
+            console.log('MongoDB connected successfully!');
+            break;
+        } catch (error) {
+            console.error('MongoDB connection error:', error.message);
+            retries -= 1;
+            console.log(`Retries left: ${retries}`);
+            await new Promise(res => setTimeout(res, 5000)); // Wait 5 seconds before retrying
+        }
     }
-
-}
+    if (!retries) {
+        console.error('Failed to connect to MongoDB after retries.');
+        process.exit(1);
+    }
+};
 
 connectDB();
+
 
 
 
