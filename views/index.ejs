@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="/profile">profile</a>
+
+    <div class="page2 chaids">
+        <% if (products.length > 0) { %>
+            <% products.forEach(function(product) { %>
+              <div class="card1 chaid">
+                
+                  <img height="300" src="<%= product.pImage %>" alt="">
+                <h5><%= product.producttitle %></h5>
+                <h6>$<%= product.pPrice %></h6>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <h3>Not found</h3>
+          <% } %>
+
+
+
+</div>
+</body>
+
+</html>
